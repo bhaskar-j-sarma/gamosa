@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Gamosa — Animations
+   All motion is defined here so it can be tuned (or disabled) in one place.
+   Everything degrades gracefully under prefers-reduced-motion.
+   ========================================================================== */
+
+/* ---------------------------------------------- Keyframes ---------------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes menuItemIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  from { background-position: -420px 0; }
+  to   { background-position: 420px 0; }
+}
+
+/* ------------------------------------- Page-load entrance (hero, heads) -- */
+.page-enter > * {
+  opacity: 0;
+  animation: fadeUp 0.85s var(--ease) forwards;
+}
+.page-enter > *:nth-child(1) { animation-delay: 0.05s; }
+.page-enter > *:nth-child(2) { animation-delay: 0.15s; }
+.page-enter > *:nth-child(3) { animation-delay: 0.25s; }
+.page-enter > *:nth-child(4) { animation-delay: 0.35s; }
+.page-enter > *:nth-child(5) { animation-delay: 0.45s; }
+.page-enter > *:nth-child(6) { animation-delay: 0.55s; }
+
+/* Gentle drift on the hero collage */
+.hero__collage figure:nth-child(1) { animation: floaty 9s ease-in-out infinite; }
+.hero__collage figure:nth-child(2) { animation: floaty 11s ease-in-out 0.8s infinite; }
+.hero__collage figure:nth-child(3) { animation: floaty 10s ease-in-out 1.6s infinite; }
+
+/* ---------------------------------------------- Scroll reveal ------------ */
+/* Elements marked [data-reveal] start hidden; main.js adds .is-visible via
+   IntersectionObserver. If JS never runs, the no-js fallback below keeps
+   everything readable. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal="fade"] { transform: none; }
+[data-reveal="left"]  { transform: translateX(-28px); }
+[data-reveal="right"] { transform: translateX(28px); }
+
+/* Stagger children of a revealed group */
+[data-reveal-group] > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+[data-reveal-group].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal-group].is-visible > *:nth-child(1) { transition-delay: 0.04s; }
+[data-reveal-group].is-visible > *:nth-child(2) { transition-delay: 0.10s; }
+[data-reveal-group].is-visible > *:nth-child(3) { transition-delay: 0.16s; }
+[data-reveal-group].is-visible > *:nth-child(4) { transition-delay: 0.22s; }
+[data-reveal-group].is-visible > *:nth-child(5) { transition-delay: 0.28s; }
+[data-reveal-group].is-visible > *:nth-child(6) { transition-delay: 0.34s; }
+[data-reveal-group].is-visible > *:nth-child(7) { transition-delay: 0.40s; }
+[data-reveal-group].is-visible > *:nth-child(8) { transition-delay: 0.46s; }
+
+html.no-js [data-reveal],
+html.no-js [data-reveal-group] > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------------------------------------- Filter transitions ------- */
+/* Cards are re-rendered on filter; this fades the new set in smoothly. */
+.product-grid.is-filtering { opacity: 0.25; transform: translateY(6px); }
+.product-grid {
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+}
+.product-grid > .product-card {
+  animation: fadeUp 0.5s var(--ease) backwards;
+}
+.product-grid > .product-card:nth-child(1)  { animation-delay: 0.02s; }
+.product-grid > .product-card:nth-child(2)  { animation-delay: 0.05s; }
+.product-grid > .product-card:nth-child(3)  { animation-delay: 0.08s; }
+.product-grid > .product-card:nth-child(4)  { animation-delay: 0.11s; }
+.product-grid > .product-card:nth-child(5)  { animation-delay: 0.14s; }
+.product-grid > .product-card:nth-child(6)  { animation-delay: 0.17s; }
+.product-grid > .product-card:nth-child(7)  { animation-delay: 0.20s; }
+.product-grid > .product-card:nth-child(8)  { animation-delay: 0.23s; }
+.product-grid > .product-card:nth-child(n+9) { animation-delay: 0.26s; }
+
+/* ---------------------------------------------- Loading skeleton --------- */
+.skeleton {
+  border-radius: var(--radius);
+  background: linear-gradient(90deg,
+    var(--surface-sunk) 0%,
+    var(--line) 40%,
+    var(--surface-sunk) 80%);
+  background-size: 420px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.skeleton--card { aspect-ratio: 3 / 4; }
+
+/* ---------------------------------------------- Theme transition --------- */
+/* Applied briefly by main.js while the palette swaps, so colours cross-fade
+   instead of snapping. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.4s var(--ease),
+              border-color 0.4s var(--ease),
+              color 0.4s var(--ease) !important;
+}
+
+/* ---------------------------------------------- Reduced motion ----------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .page-enter > *,
+  [data-reveal],
+  [data-reveal-group] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero__collage figure { animation: none !important; }
+  .product-card:hover { transform: none; }
+  .product-card:hover .product-card__media img { transform: none; }
+  .btn:hover { transform: none; }
+}
