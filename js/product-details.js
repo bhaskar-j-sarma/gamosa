@@ -115,12 +115,13 @@
       "</div>";
   }
 
-  // Shown only where the catalogue gives no product-specific description.
+  // Shown only where the catalogue gives no product-specific description, so
+  // the line above is the category blurb rather than this item's own.
   var descNote = product.description
     ? ""
-    : '<p class="note-line">The 2026 catalogue lists this item by name and price ' +
-      "without a separate description. The line above is the description printed " +
-      "for the " + catName + " section. Message us on WhatsApp for full details.</p>";
+    : '<p class="note-line">Exact sizes, finishes and lead time for this piece ' +
+      "are confirmed on enquiry — message us on WhatsApp and we'll send the " +
+      "full details.</p>";
 
   root.innerHTML =
     '<nav class="breadcrumb" aria-label="Breadcrumb">' +

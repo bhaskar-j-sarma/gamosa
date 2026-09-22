@@ -6,8 +6,7 @@
 <!-- Title and metadata below are replaced at runtime by js/product-details.js -->
 <title>Product — Gamosa Collection 2026</title>
 <meta name="description" content="Product details from the Gamosa 2026 catalogue — custom engraving, printing and laser-cut gifting and branding products. Order on WhatsApp.">
-<meta name="theme-color" content="#FAF7F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF7F0">
 <link rel="canonical" href="https://www.gamosa.co/product.html">
 
 <meta property="og:type" content="product">
@@ -15,23 +14,16 @@
 <meta property="og:title" content="Product — Gamosa Collection 2026">
 <meta property="og:description" content="Custom gifting and branding products from Gamosa. Order on WhatsApp.">
 <meta property="og:url" content="https://www.gamosa.co/product.html">
-<meta property="og:image" content="https://www.gamosa.co/assets/images/branding/og-cover.svg">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.gamosa.co/assets/images/gamosa_logo.jpg">
+<meta property="og:image:alt" content="The Gamosa logo — a red letter G woven into an Assamese gamosa border">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Product — Gamosa Collection 2026">
 <meta name="twitter:description" content="Custom gifting and branding products from Gamosa.">
 
-<link rel="icon" href="assets/images/branding/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/images/gamosa_logo.jpg" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Apply the saved theme before first paint to avoid a flash of the wrong palette -->
-<script>
-  try {
-    var t = localStorage.getItem("gamosa-theme");
-    if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", t);
-  } catch (e) { document.documentElement.setAttribute("data-theme", "light"); }
-</script>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/animations.css">
 <link rel="stylesheet" href="css/responsive.css">
@@ -43,7 +35,7 @@
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href="index.html" aria-label="Gamosa — home">
-      <img class="brand__mark" src="assets/images/branding/logo.svg" alt="" width="38" height="38">
+      <img class="brand__mark" src="assets/images/gamosa_logo.jpg" alt="" width="38" height="38">
       <span>
         <span class="brand__name"><em>G</em>amosa</span>
         <span class="brand__tag">Gifting &amp; Branding</span>
@@ -55,7 +47,6 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav__actions">
-      <button type="button" class="icon-btn theme-toggle" aria-pressed="false" aria-label="Switch to dark mode"></button>
       <a class="btn btn--wa btn--sm btn--wa-desktop" href="https://wa.me/918486294198" data-wa>
         <span data-icon="whatsapp" aria-hidden="true"></span><span>WhatsApp</span>
       </a>
@@ -127,7 +118,7 @@
   <div class="container footer__inner">
     <div class="footer__about">
       <a class="brand" href="index.html">
-        <img class="brand__mark" src="assets/images/branding/logo.svg" alt="" width="38" height="38">
+        <img class="brand__mark" src="assets/images/gamosa_logo.jpg" alt="" width="38" height="38">
         <span class="brand__name"><em>G</em>amosa</span>
       </a>
       <p>Gifting &amp; branding solution — custom engraving, printing, laser cutting and LED work for gifts, awards and signage.</p>
@@ -165,6 +156,7 @@
     <div class="footer__bottom">
       <p>&copy; <span data-year>2026</span> Gamosa. All rights reserved.</p>
       <p>Prices marked * are indicative catalogue rates.</p>
+      <p class="footer__credit">Developed by Bhaskar Jyoti Sarma</p>
     </div>
   </div>
 </footer>

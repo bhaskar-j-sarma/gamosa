@@ -1,0 +1,5 @@
+# https://www.gamosa.co/
+User-agent: *
+Allow: /
+
+Sitemap: https://www.gamosa.co/sitemap.xml

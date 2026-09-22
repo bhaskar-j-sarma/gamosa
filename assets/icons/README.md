@@ -5,9 +5,8 @@ All icons used in the interface are defined once as inline SVG strings in the
 into any element carrying a `data-icon="<name>"` attribute, which keeps the
 pages free of repeated SVG markup and avoids extra network requests.
 
-Available names: `whatsapp`, `arrow`, `sun`, `moon`, `search`, `close`,
-`chevron`, `info`, `phone`, `mail`, `globe`, `pin`, `clock`, `spark`, `laser`,
-`palette`, `box`, `chat`.
+Available names: `whatsapp`, `arrow`, `search`, `close`, `chevron`, `phone`,
+`mail`, `globe`, `pin`, `spark`, `laser`, `palette`, `box`, `chat`.
 
 ```html
 <span data-icon="whatsapp" aria-hidden="true"></span>

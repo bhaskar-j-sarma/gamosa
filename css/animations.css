@@ -121,18 +121,6 @@ html.no-js [data-reveal-group] > * {
 }
 .skeleton--card { aspect-ratio: 3 / 4; }
 
-/* ---------------------------------------------- Theme transition --------- */
-/* Applied briefly by main.js while the palette swaps, so colours cross-fade
-   instead of snapping. */
-html.theme-transition,
-html.theme-transition *,
-html.theme-transition *::before,
-html.theme-transition *::after {
-  transition: background-color 0.4s var(--ease),
-              border-color 0.4s var(--ease),
-              color 0.4s var(--ease) !important;
-}
-
 /* ---------------------------------------------- Reduced motion ----------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

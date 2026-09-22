@@ -1,6 +1,6 @@
 /* ==========================================================================
    Gamosa — Core stylesheet
-   1.  Design tokens (light + dark)
+   1.  Design tokens
    2.  Reset & base
    3.  Layout primitives
    4.  Gamosa-inspired decorative elements
@@ -19,7 +19,7 @@
 
 /* ---------------------------------------------- 1. Design tokens --------- */
 :root {
-  /* Light mode — ivory, charcoal, muted Assamese red */
+  /* Ivory, charcoal, muted Assamese red */
   --bg:            #FAF7F0;
   --bg-alt:        #F2EDE2;
   --surface:       #FFFFFF;
@@ -62,36 +62,6 @@
   --dur: 0.45s;
 
   color-scheme: light;
-}
-
-[data-theme="dark"] {
-  --bg:            #121110;
-  --bg-alt:        #191715;
-  --surface:       #1C1A18;
-  --surface-sunk:  #211F1C;
-  --text:          #F3EFE7;
-  --text-soft:     #B5ADA1;
-  --text-faint:    #8B837A;
-  --line:          #2E2B27;
-  --line-strong:   #413C36;
-
-  --accent:        #D1615A;
-  --accent-hover:  #E0766F;
-  --accent-soft:   rgba(209, 97, 90, 0.12);
-  --accent-ring:   rgba(209, 97, 90, 0.38);
-  --gold:          #C5A469;
-  --earth:         #A08D73;
-
-  --whatsapp:      #25C463;
-  --whatsapp-hover:#3FD378;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4), 0 24px 60px rgba(0, 0, 0, 0.45);
-
-  --header-bg: rgba(18, 17, 16, 0.72);
-
-  color-scheme: dark;
 }
 
 /* ---------------------------------------------- 2. Reset & base ---------- */
@@ -409,6 +379,10 @@ hr {
   width: 38px;
   height: 38px;
   flex: none;
+  /* The logo ships on its own dark ground, so round it into a badge that sits
+     on the ivory page the way the favicon does. */
+  border-radius: 10px;
+  object-fit: cover;
 }
 .brand__name {
   font-family: var(--font-display);
@@ -489,10 +463,6 @@ hr {
 }
 .icon-btn svg { width: 19px; height: 19px; }
 
-/* Theme toggle icon swap */
-.theme-toggle .icon-moon { display: none; }
-[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
-[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 
 /* Hamburger */
 .nav__burger { display: none; }
@@ -847,21 +817,6 @@ body.no-scroll { overflow: hidden; }
   color: var(--text-faint);
 }
 
-.placeholder-note {
-  display: flex;
-  gap: 0.7rem;
-  align-items: flex-start;
-  margin-top: 1.75rem;
-  padding: 0.9rem 1.1rem;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-sm);
-  background: var(--surface-sunk);
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--text-faint);
-}
-.placeholder-note svg { width: 16px; height: 16px; flex: none; margin-top: 2px; }
-.placeholder-note p { margin: 0; }
 
 /* Why choose us */
 .why-grid {
@@ -1378,11 +1333,6 @@ body.no-scroll { overflow: hidden; }
 }
 .contact-item p { margin: 0; font-size: 0.98rem; }
 .contact-item a:hover { color: var(--accent); }
-.contact-item .pending {
-  font-size: 0.88rem;
-  color: var(--text-faint);
-  font-style: italic;
-}
 
 .form-card {
   background: var(--surface);
@@ -1512,6 +1462,9 @@ body.no-scroll { overflow: hidden; }
   color: var(--text-faint);
 }
 .footer__bottom a:hover { color: var(--accent); }
+
+/* Keeps the developer credit on one line when the footer row wraps. */
+.footer__credit { white-space: nowrap; }
 
 /* ---------------------------------------------- 14. Floating WhatsApp ---- */
 .wa-float {

@@ -2,12 +2,12 @@
    Gamosa — Shared site behaviour
    Loaded on every page, after js/products.js.
    1. Icons
-   2. Theme (light / dark + localStorage)
-   3. Header & mobile navigation
-   4. Scroll reveal (IntersectionObserver)
-   5. WhatsApp links
-   6. Product card renderer (shared by home + products pages)
-   7. Home page rendering
+   2. Header & mobile navigation
+   3. Scroll reveal (IntersectionObserver)
+   4. WhatsApp links
+   5. Product card renderer (shared by home + products pages)
+   6. Home page rendering
+   7. Contact form
    ========================================================================== */
 (function () {
   "use strict";
@@ -20,18 +20,12 @@
       '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.36c0-4.54 3.69-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.22-8.24 8.22Z"/></svg>',
     arrow:
       '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
-    sun:
-      '<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
-    moon:
-      '<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>',
     search:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
     close:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>',
     chevron:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
-    info:
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg>',
     phone:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v2.5a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 3.7 2 2 0 0 1 4.1 1.5h2.5a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.7 9.3a16 16 0 0 0 6 6l1.2-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>',
     mail:
@@ -40,8 +34,6 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg>',
     pin:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.8"/></svg>',
-    clock:
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 1.9"/></svg>',
     spark:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.1 5.6L20 10.7l-5.6 2.1L12 18.4l-2.1-5.6L4 10.7l5.9-2.1L12 3Z"/></svg>',
     laser:
@@ -69,59 +61,7 @@
 
   window.GamosaIcons = ICONS;
 
-  /* ------------------------------------------------ 2. Theme ------------- */
-  var STORAGE_KEY = "gamosa-theme";
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    var btn = document.querySelector(".theme-toggle");
-    if (btn) {
-      btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
-      btn.setAttribute(
-        "aria-label",
-        theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
-      );
-    }
-  }
-
-  function storedTheme() {
-    try {
-      return localStorage.getItem(STORAGE_KEY);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  function initTheme() {
-    var saved = storedTheme();
-    var prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    applyTheme(saved || (prefersDark ? "dark" : "light"));
-
-    var toggle = document.querySelector(".theme-toggle");
-    if (!toggle) return;
-
-    toggle.innerHTML = ICONS.sun + ICONS.moon;
-    toggle.addEventListener("click", function () {
-      var next =
-        document.documentElement.getAttribute("data-theme") === "dark"
-          ? "light"
-          : "dark";
-      document.documentElement.classList.add("theme-transition");
-      applyTheme(next);
-      try {
-        localStorage.setItem(STORAGE_KEY, next);
-      } catch (e) {
-        /* storage unavailable (private mode) — theme still applies this visit */
-      }
-      window.setTimeout(function () {
-        document.documentElement.classList.remove("theme-transition");
-      }, 450);
-    });
-  }
-
-  /* ------------------------------------------------ 3. Navigation -------- */
+  /* ------------------------------------------------ 2. Navigation -------- */
   function initHeader() {
     var header = document.querySelector(".site-header");
     if (!header) return;
@@ -192,7 +132,7 @@
     });
   }
 
-  /* ------------------------------------------------ 4. Scroll reveal ----- */
+  /* ------------------------------------------------ 3. Scroll reveal ----- */
   function initReveal(root) {
     var scope = root || document;
     var items = scope.querySelectorAll("[data-reveal], [data-reveal-group]");
@@ -223,7 +163,7 @@
   }
   window.GamosaReveal = initReveal;
 
-  /* ------------------------------------------------ 5. WhatsApp ---------- */
+  /* ------------------------------------------------ 4. WhatsApp ---------- */
   /**
    * Wires every [data-wa] element to a wa.me link.
    * data-wa-product — optional product name for the pre-filled message.
@@ -239,7 +179,7 @@
   }
   window.GamosaWhatsApp = initWhatsAppLinks;
 
-  /* ------------------------------------------------ 6. Product card ------ */
+  /* ------------------------------------------------ 5. Product card ------ */
   /**
    * Returns the markup for one product card. Shared by the home page and the
    * products page so the card only ever exists in one place.
@@ -273,7 +213,7 @@
   }
   window.GamosaCard = productCardHTML;
 
-  /* ------------------------------------------------ 7. Home page --------- */
+  /* ------------------------------------------------ 6. Home page --------- */
   function initHome() {
     var featuredGrid = document.getElementById("featured-grid");
     if (featuredGrid) {
@@ -306,7 +246,7 @@
     }
   }
 
-  /* ------------------------------------------------ 8. Contact form ------ */
+  /* ------------------------------------------------ 7. Contact form ------ */
   /**
    * The site has no backend. The enquiry form therefore composes a message and
    * hands it to WhatsApp — it never claims to send an email.
@@ -395,7 +335,6 @@
 
   /* ------------------------------------------------ Boot ----------------- */
   function boot() {
-    initTheme();
     initHeader();
     initMobileMenu();
     initHome();

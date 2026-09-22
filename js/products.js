@@ -33,10 +33,6 @@ const SITE = {
     pin: "781030",
     country: "India"
   },
-  // Still not supplied — left empty on purpose and shown as "ask us on
-  // WhatsApp" rather than invented.
-  businessHours: "",
-  social: [],
   priceNote:
     "Prices marked with * are the indicative rates listed in the Gamosa 2026 catalogue. Final pricing depends on your design, size and quantity — confirm on WhatsApp."
 };

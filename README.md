@@ -6,9 +6,9 @@ no build step, no backend. Orders are placed through WhatsApp.
 
 All product names, prices, descriptions and photographs come from the
 **Gamosa Collection 2026** catalogue. The founder's name and the business
-address were supplied separately. Nothing has been invented — where a detail is
-still missing (business hours, social media), the site shows a clearly marked
-placeholder instead.
+address were supplied separately. Nothing has been invented — where the
+catalogue gives a product no description of its own, the page shows the
+category blurb and says details are confirmed on enquiry.
 
 ---
 
@@ -40,20 +40,22 @@ Gamosa/
 ├── contact.html            Contact details + WhatsApp enquiry form
 │
 ├── css/
-│   ├── style.css           Design tokens, layout, components, light + dark themes
+│   ├── style.css           Design tokens, layout, components
 │   ├── responsive.css      Breakpoints: 1600 / 1280 / 1100 / 1024 / 880 / 768 / 560 / 400 / 340
 │   └── animations.css      Keyframes, scroll reveal, reduced-motion support
 │
 ├── js/
 │   ├── products.js         SINGLE SOURCE OF TRUTH — catalogue data + shared helpers
-│   ├── main.js             Theme, navigation, reveal, icons, card renderer, home, contact form
+│   ├── main.js             Navigation, reveal, icons, card renderer, home, contact form
 │   ├── products-page.js    Search / category filter / sort on products.html
 │   └── product-details.js  Renders product.html from ?id=, plus related products
 │
 ├── assets/
 │   ├── images/
 │   │   ├── products/       One image per product, named <product-id>.svg
-│   │   └── branding/       logo.svg, favicon.svg, og-cover.svg
+│   │   ├── gamosa_logo.jpg  Brand mark — header, footer, favicon, social card
+│   │   ├── founder.jpg     Portrait for the home page founder note
+│   │   └── branding/       Four hero collage photographs
 │   └── icons/              Standalone icon copies + notes (UI icons live in main.js)
 │
 └── README.md
@@ -129,8 +131,8 @@ that have no description of their own. Category tiles on the home page link to
 
 Phone, email, website, GSTIN, founder and address live in the `SITE` object in
 `js/products.js` **and** in the page markup (header, footer, contact page).
-`businessHours` and `social` are still empty — fill them in `SITE` and replace
-the matching placeholder in `contact.html` once confirmed.
+Business hours and social profiles are not published anywhere on the site; add
+them to `SITE` and to the contact page's card list if that changes.
 
 The address (Rangmahal, North Guwahati, Guwahati, Kamrup, Assam — 781030) also
 appears in a `LocalBusiness` JSON-LD block in the `<head>` of `contact.html`,
@@ -189,17 +191,17 @@ product's `images` array. For multiple angles, list several paths and
 home-page hero (`hero-mirror`, `hero-keychain`, `hero-merch`, `hero-signage`, at
 a higher 368px). The founder portrait lives at `assets/images/founder.jpg`.
 
-One thing still worth replacing: `og-cover.svg`, used for link previews. Most
-social platforms do not render SVG — export a 1200×630 JPG or PNG over it and
-the `og:image` tags will pick it up unchanged.
+Link previews use `gamosa_logo.jpg` (640×640) with `twitter:card` set to
+`summary`. If you later export a 1200×630 cover, drop it in `branding/`, point
+the `og:image` tags at it and switch the card type back to
+`summary_large_image`.
 
 ---
 
 ## Features
 
-- **Light / dark theme** with the choice stored in `localStorage` under
-  `gamosa-theme`, defaulting to the system preference. An inline script in each
-  `<head>` applies it before first paint so there is no flash.
+- **Single light theme** — ivory, charcoal and a muted Assamese red, defined as
+  custom properties on `:root` in `css/style.css`.
 - **Search** across product names, descriptions, categories and specifications;
   every typed word must match.
 - **Category filter and sort** (catalogue order, price, name) reflected in the
